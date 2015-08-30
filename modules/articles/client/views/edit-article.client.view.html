@@ -1,29 +1,101 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-  <div class="page-header">
-    <h1>Edit Article</h1>
-  </div>
-  <div class="col-md-12">
+    <div class="page-header">
+        <h1>Ticket</h1>
+        <div ng-controller="AlertController">
+            <alert data-ng-show="msg" type="{{msg.type}}" close="" dismiss-on-timeout="2000">{{msg.content}}</alert>
+        </div>
+    </div>
     <form name="articleForm" class="form-horizontal" data-ng-submit="update()" novalidate>
-      <fieldset>
-        <div class="form-group">
-          <label class="control-label" for="title">Title</label>
-          <div class="controls">
-            <input name="title" type="text" data-ng-model="article.title" id="title" class="form-control" placeholder="Title" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <div class="controls">
-            <textarea name="content" data-ng-model="article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Update" class="btn btn-default">
-        </div>
-        <div data-ng-show="error" class="text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
-      </fieldset>
+        <fieldset class="col-md-4">
+            <!--<div class="col-xs-10">
+                <label class="control-label" for="requester">Requester</label>
+                <div class="controls">
+                    <select data-ng-model="article.requester" name="requester" class="form-control">
+                        <option data-ng-repeat="user in requesters" value="{{user._id}}">{{user.displayName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="requester">Assignee</label>
+                <div class="controls">
+                    <select data-ng-model="article.assignee" name="requester" class="form-control">
+                        <option data-ng-repeat="user in requesters" value="{{user._id}}">{{user.displayName}}</option>
+                    </select>
+                </div>
+            </div>-->
+            <div class='container-fluid controls col-xs-10' ng-controller="TypeaheadCtrl">
+                <label class="control-label" for="requester">Requester</label>
+                <input type="text" data-ng-model="asyncSelected" typeahead-on-select="change(asyncSelected)" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+                </div>
+            </div>
+            <div class='container-fluid controls col-xs-10' ng-controller="TypeaheadCtrl">
+                <label class="control-label" for="requester">Assignee</label>
+                <input type="text" data-ng-model="asyncSelected" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="type">Type</label>
+                <div class="controls">
+                    <select name="type" class="form-control" data-ng-model="article.type">
+                        <option value=0>-</option>
+                        <option value=1>Question</option>
+                        <option value=2>Incident</option>
+                        <option value=3>Problem</option>
+                        <option value=4>Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="priority">Priority</label>
+                <div class="controls">
+                    <select name="priority" id="priority" class="form-control" data-ng-model="article.priority">
+                        <option value=0>-</option>
+                        <option value=1>Low</option>
+                        <option value=2>Normal</option>
+                        <option value=3>High</option>
+                        <option value=4>Urgent</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="col-md-8">
+            <div>
+                <p data-ng-bind="article.created | date:'MM/dd/yyyy \'at\' h:mma'"></p>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <!--<i class="glyphicon glyphicon-refresh well well-sm"></i>--><input name="title" type="text" data-ng-model="article.title" id="title" class="form-control" placeholder="Title">
+                </div>
+            </div>
+            <div>
+                <strong data-ng-bind="article.content"></strong>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="content">Add new reply</label>
+                <div class="controls">
+                    <textarea name="newReply" data-ng-model="article.newReply" class="form-control" cols="30" rows="5" placeholder="Type to add reply"></textarea>
+                </div>
+            </div>
+            <div class="list-group">
+                <a data-ng-repeat="response in article.responses|orderBy: '-created' track by $index" class="list-group-item">
+                    <small class="list-group-item-text">
+                        Posted on
+                        <span data-ng-bind="response.created | date:'mediumDate'"></span>
+                        by
+                        <span data-ng-bind="response.user.displayName"></span>
+                    </small>
+                    <p class="list-group-item-text" data-ng-bind="response.content"></p>
+                </a>
+            </div>
+            <div class="form-group bottom-right-fixed">
+                <input type="submit" class="btn btn-primary btn-lg btn-block">
+            </div>
+        </fieldset>
     </form>
-  </div>
 </section>

@@ -1,29 +1,70 @@
 <section data-ng-controller="ArticlesController">
-  <div class="page-header">
-    <h1>New Article</h1>
-  </div>
-  <div class="col-md-12">
+    <div class="page-header">
+        <h1>Ticket</h1>
+    </div>
     <form name="articleForm" class="form-horizontal" data-ng-submit="create()" novalidate>
-      <fieldset>
-        <div class="form-group">
-          <label class="control-label" for="title">Title</label>
-          <div class="controls">
-            <input name="title" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <div class="controls">
-            <textarea name="content" data-ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-default">
-        </div>
-        <div data-ng-show="error" class="text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
-      </fieldset>
+        <fieldset class="col-md-4">
+            <div class="col-xs-10">
+                <label class="control-label" for="requester">Requester</label>
+                <div class="controls">
+                    <select name="requester" class="form-control">
+                        <option>select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="requester">Assignee</label>
+                <div class="controls">
+                    <select name="assignee" class="form-control">
+                        <option>select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="type">Type</label>
+                <div class="controls">
+                    <select name="type" class="form-control" data-ng-model="type">
+                        <option value=0>-</option>
+                        <option value=1>Question</option>
+                        <option value=2>Incident</option>
+                        <option value=3>Problem</option>
+                        <option value=4>Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <label class="control-label" for="priority">Priority</label>
+                <div class="controls">
+                    <select name="priority" class="form-control" data-ng-model="priority">
+                        <option value=0>-</option>
+                        <option value=1>Low</option>
+                        <option value=2>Normal</option>
+                        <option value=3>High</option>
+                        <option value=4>Urgent</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="col-md-8">
+            <div class="form-group">
+                <label class="control-label" for="title">Title</label>
+                <div class="controls">
+                    <input name="title" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title">
+                </div>
+            </div>
+            <p>{{article.createdFromNow}}</p>
+            <div class="form-group">
+                <label class="control-label" for="content">Content</label>
+                <div class="controls">
+                    <textarea name="content" data-ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default">
+            </div>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </fieldset>
     </form>
-  </div>
 </section>
