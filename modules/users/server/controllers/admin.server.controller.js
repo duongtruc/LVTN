@@ -23,8 +23,7 @@ exports.update = function (req, res) {
 
   //For security purposes only merge these parameters
   user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
-  user.displayName = user.firstName + ' ' + user.lastName;
+  user.displayName = user.firstName;
   user.roles = req.body.roles;
 
   user.save(function (err) {
@@ -90,4 +89,27 @@ exports.userByID = function (req, res, next, id) {
     req.model = user;
     next();
   });
+};
+
+exports.newuser = function (req, res) {
+    var user = new User(req.body);
+    var message = null;
+    user.provider = 'local';
+    user.displayName = user.firstName;
+
+    var pass = Math.random().toString(36).slice(-8);
+    user.password = pass;
+    req.body.password = pass;
+    req.body.roles = [user.roles];
+
+    // Then save the user
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+          res.json(user);
+        }
+      });
 };
