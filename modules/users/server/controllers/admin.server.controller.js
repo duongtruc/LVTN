@@ -8,6 +8,16 @@ var path = require('path'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport("SMTP", {
+    service: "Gmail",
+    auth: {
+        user: 'cskh.lvtn@gmail.com',
+        pass: 'tuyennguyen'
+    }
+});
+
 /**
  * Show the current user
  */
@@ -97,6 +107,9 @@ exports.newuser = function (req, res) {
     user.provider = 'local';
     user.displayName = user.firstName;
 
+    var tk = user.username;
+    var em = user.email;
+
     var pass = Math.random().toString(36).slice(-8);
     user.password = pass;
     req.body.password = pass;
@@ -112,4 +125,30 @@ exports.newuser = function (req, res) {
           res.json(user);
         }
       });
+
+var mailOptions = {
+  from: "CSKH LVTN <cskh.lvtn@gmail.com>",
+  to: em,
+  subject: "Tai Khoan CSKH",
+  headers: {
+      'X-Laziness-level': 1000
+  },
+
+  // plaintext body
+  text: "Chào bạn!\n\n"+
+        "Đây là tài khoản và mật khẩu của bạn:\n\n"+
+        "Tài khoản:"+ tk +
+        "\n" +
+        "Mật khẩu: " + pass
+};
+
+    transporter.sendMail(mailOptions, function(error, response) {
+  if (error) {
+    console.log("ERROR: " + error);
+  } else {
+    console.log("Message sent: " + response.message);
+  }
+});
+
+
 };
