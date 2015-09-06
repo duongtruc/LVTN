@@ -1,0 +1,6 @@
+/* Ticket custom style */
+.bottom-right-fixed {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+ }

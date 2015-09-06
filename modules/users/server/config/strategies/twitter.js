@@ -25,11 +25,9 @@ module.exports = function (config) {
       var displayName = profile.displayName.trim();
       var iSpace = displayName.indexOf(' '); // index of the whitespace following the firstName
       var firstName = iSpace !== -1 ? displayName.substring(0, iSpace) : displayName;
-      var lastName = iSpace !== -1 ? displayName.substring(iSpace + 1) : '';
 
       var providerUserProfile = {
         firstName: firstName,
-        lastName: lastName,
         displayName: displayName,
         username: profile.username,
         profileImageURL: profile.photos[0].value.replace('normal', 'bigger'),

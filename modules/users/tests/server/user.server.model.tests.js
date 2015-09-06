@@ -19,7 +19,6 @@ describe('User Model Unit Tests:', function () {
   before(function () {
     user = {
       firstName: 'Full',
-      lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
       username: 'username',
@@ -28,7 +27,6 @@ describe('User Model Unit Tests:', function () {
     };
     user2 = {
       firstName: 'Full',
-      lastName: 'Name',
       displayName: 'Full Name',
       email: 'test@test.com',
       username: 'username',
@@ -37,7 +35,6 @@ describe('User Model Unit Tests:', function () {
     };
     user3 = {
       firstName: 'Different',
-      lastName: 'User',
       displayName: 'Full Different Name',
       email: 'test3@test.com',
       username: 'different_username',
