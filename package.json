@@ -47,6 +47,7 @@
     "method-override": "^2.3.3",
     "mocha": "~1.20.0",
     "moment": "^2.10.6",
+    "mongodb-core": "^1.2.11",
     "mongoose": "^4.0.6",
     "morgan": "^1.6.1",
     "multer": "0.1.8",
