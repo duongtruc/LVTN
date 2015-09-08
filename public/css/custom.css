@@ -1,6 +1,56 @@
+/* Page layout custom css */
+html, body {
+    height: 100%;
+}
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.main-tab-list {
+    margin-left: 50px;
+}
+
+
 /* Ticket custom style */
+
 .bottom-right-fixed {
     position: fixed;
     bottom: 0px;
     right: 20px;
- }
+}
+
+.nav-tabs {
+    margin-top: 10px;
+    height: 0px;
+    background-color: black;
+}
+
+.nav-tabs > li {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    vertical-align: middle;
+}
+
+.nav-tabs > li > a {
+    padding-left: 8px;
+    color: white;
+    height: 30px;
+    background-color: #7faaff;
+}
+.tab-content {
+    margin-top: 100px;
+}
+.ticket-tab {
+    width: 220px;
+}
+.small-profile-picture {
+    width: 30px;
+    height: 30px;
+}
+.dropdown-group-title > a {
+    color: #b2b2b2 !important;
+}
+.create-menu {
+    width: 250px;
+}
