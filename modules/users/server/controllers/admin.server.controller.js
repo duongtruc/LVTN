@@ -8,6 +8,16 @@ var path = require('path'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport("SMTP", {
+    service: "Gmail",
+    auth: {
+        user: 'cskh.lvtn@gmail.com',
+        pass: 'tuyennguyen'
+    }
+});
+
 /**
  * Show the current user
  */
@@ -23,8 +33,7 @@ exports.update = function (req, res) {
 
   //For security purposes only merge these parameters
   user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
-  user.displayName = user.firstName + ' ' + user.lastName;
+  user.displayName = user.firstName;
   user.roles = req.body.roles;
 
   user.save(function (err) {
@@ -90,4 +99,56 @@ exports.userByID = function (req, res, next, id) {
     req.model = user;
     next();
   });
+};
+
+exports.newuser = function (req, res) {
+    var user = new User(req.body);
+    var message = null;
+    user.provider = 'local';
+    user.displayName = user.firstName;
+
+    var tk = user.username;
+    var em = user.email;
+
+    var pass = Math.random().toString(36).slice(-8);
+    user.password = pass;
+    req.body.password = pass;
+    req.body.roles = [user.roles];
+
+    // Then save the user
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+          res.json(user);
+        }
+      });
+
+var mailOptions = {
+  from: "CSKH LVTN <cskh.lvtn@gmail.com>",
+  to: em,
+  subject: "Tai Khoan CSKH",
+  headers: {
+      'X-Laziness-level': 1000
+  },
+
+  // plaintext body
+  text: "Chào bạn!\n\n"+
+        "Đây là tài khoản và mật khẩu của bạn:\n\n"+
+        "Tài khoản:"+ tk +
+        "\n" +
+        "Mật khẩu: " + pass
+};
+
+    transporter.sendMail(mailOptions, function(error, response) {
+  if (error) {
+    console.log("ERROR: " + error);
+  } else {
+    console.log("Message sent: " + response.message);
+  }
+});
+
+
 };

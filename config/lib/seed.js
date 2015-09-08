@@ -19,7 +19,6 @@ if (process.env.NODE_ENV === 'production') {
         provider: 'local',
         email: 'admin@localhost.com',
         firstName: 'Admin',
-        lastName: 'Local',
         displayName: 'Admin Local',
         roles: ['user', 'admin']
       });
@@ -45,7 +44,6 @@ if (process.env.NODE_ENV === 'production') {
       provider: 'local',
       email: 'user@localhost.com',
       firstName: 'User',
-      lastName: 'Local',
       displayName: 'User Local',
       roles: ['user']
     });
@@ -69,7 +67,6 @@ if (process.env.NODE_ENV === 'production') {
       provider: 'local',
       email: 'admin@localhost.com',
       firstName: 'Admin',
-      lastName: 'Local',
       displayName: 'Admin Local',
       roles: ['user', 'admin']
     });

@@ -33,9 +33,9 @@ angular.module('users.admin.routes').config(['$stateProvider',
           }]
         }
       })
-      .state('admin.create-user', {
-        url: '/user/:userId/newuser',
-        templateUrl: 'modules/users/client/views/authentication/newuser.client.view.html',
+      .state('admin.newuser', {
+        url: '/newuser',
+        templateUrl: 'modules/users/client/views/admin/new-user.client.view.html',
       });
   }
 ]);

@@ -12,7 +12,7 @@ angular.module('users.admin').run(['Menus',
     });
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Create User',
-      state: 'admin.create-user',
+      state: 'admin.newuser',
       type: 'dropdown',
       roles: ['admin', 'agent']
     });
