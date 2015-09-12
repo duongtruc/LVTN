@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users.admin').controller('NewUserController', ['$scope', '$stateParams', '$location', 'Authentication', 'Users',
-  function ($scope, $stateParams, $location, Authentication, Users) {
+angular.module('users.admin').controller('NewUserController', ['$scope', '$modalInstance', '$stateParams', '$location', 'Authentication', 'Users',
+  function ($scope, $modalInstance, $stateParams, $location, Authentication, Users) {
 
         //Create new User
         $scope.newuser = function () {
@@ -13,7 +13,6 @@ angular.module('users.admin').controller('NewUserController', ['$scope', '$state
                 roles: [$scope.credentials.roles]
             });
 
-            //$save =  1 post request ...
             newUser.$save(function (response) {
                 $scope.success = true;
                 $scope.msg = {
@@ -22,8 +21,13 @@ angular.module('users.admin').controller('NewUserController', ['$scope', '$state
                 };
                 $scope.credentials.firstName = '';
                 $scope.credentials.email = '';
+                $modalInstance.close();
             }, function (response) {
                 $scope.error = response.data.message;
             });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
         };
   }]);

@@ -67,9 +67,11 @@
         border-right: 1px solid #c4c4c4;
         margin-top: -70px !important;
     }
+
     .frm-main-ticket .frm-ticket-left .frm-left-border {
         border: 1px solid #c4c4c4;
     }
+
     .frm-main-ticket .frm-ticket-right {
         padding-left: 30px;
     }
@@ -124,6 +126,7 @@
                     <div class="text-center form-group">
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="submit">OK</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
                         </div>
                     </div>
                     <div data-ng-show="error" class="text-center text-danger">
@@ -205,46 +208,46 @@
                                 </select>
                             </div>
                         </div>-->
-                            <div class='container-fluid controls col-xs-12' ng-controller="TypeaheadCtrl">
-                                <label class="control-label" for="requester">Requester</label>
-                                <input type="text" data-ng-model="asyncSelected" typeahead-on-select="change(asyncSelected)" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                                <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
-                                </div>
+                        <div class='container-fluid controls col-xs-12' ng-controller="TypeaheadCtrl">
+                            <label class="control-label" for="requester">Requester</label>
+                            <input type="text" data-ng-model="asyncSelected" typeahead-on-select="change(asyncSelected)" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
                             </div>
-                            <div class='container-fluid controls col-xs-12' ng-controller="TypeaheadCtrl">
-                                <label class="control-label" for="requester">Assignee</label>
-                                <input type="text" data-ng-model="asyncSelected" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                                <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
-                                </div>
+                        </div>
+                        <div class='container-fluid controls col-xs-12' ng-controller="TypeaheadCtrl">
+                            <label class="control-label" for="requester">Assignee</label>
+                            <input type="text" data-ng-model="asyncSelected" placeholder="Type to search" typeahead="user.displayName for user in getUser($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
                             </div>
-                            <div class="col-xs-12">
-                                <label class="control-label" for="type">Type</label>
-                                <div class="controls">
-                                    <select name="type" class="form-control" data-ng-model="ticket.type">
-                                        <option value=0>-</option>
-                                        <option value=1>Question</option>
-                                        <option value=2>Incident</option>
-                                        <option value=3>Problem</option>
-                                        <option value=4>Task</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <label class="control-label" for="type">Type</label>
+                            <div class="controls">
+                                <select name="type" class="form-control" data-ng-model="ticket.type">
+                                    <option value=0>-</option>
+                                    <option value=1>Question</option>
+                                    <option value=2>Incident</option>
+                                    <option value=3>Problem</option>
+                                    <option value=4>Task</option>
+                                </select>
                             </div>
-                            <div class="col-xs-12">
-                                <label class="control-label" for="priority">Priority</label>
-                                <div class="controls">
-                                    <select name="priority" id="priority" class="form-control" data-ng-model="ticket.priority">
-                                        <option value=0>-</option>
-                                        <option value=1>Low</option>
-                                        <option value=2>Normal</option>
-                                        <option value=3>High</option>
-                                        <option value=4>Urgent</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <label class="control-label" for="priority">Priority</label>
+                            <div class="controls">
+                                <select name="priority" id="priority" class="form-control" data-ng-model="ticket.priority">
+                                    <option value=0>-</option>
+                                    <option value=1>Low</option>
+                                    <option value=2>Normal</option>
+                                    <option value=3>High</option>
+                                    <option value=4>Urgent</option>
+                                </select>
                             </div>
+                        </div>
                     </fieldset>
                     <fieldset class="col-md-8 frm-ticket-right">
                         <div>
