@@ -32,7 +32,7 @@ angular.module('core').controller('HomeController', ['$scope', '$modal', 'Authen
 
         $scope.tickets = [];
         $scope.animationsEnabled = true;
-
+        $.notify("Demo notif", "error");
         $scope.createnewuser = function (size) {
 
             var modalInstance = $modal.open({
