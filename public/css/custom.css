@@ -5,10 +5,12 @@ html, body {
 .container-full {
     margin: 0 auto;
     width: 100%;
+    border-top: none;
 }
 
 .main-tab-list {
     margin-left: 50px;
+    border-top: none;
 }
 
 
@@ -24,6 +26,7 @@ html, body {
     margin-top: 10px;
     height: 0px;
     background-color: black;
+    border-bottom: none;
 }
 
 .nav-tabs > li {
@@ -53,4 +56,9 @@ html, body {
 }
 .create-menu {
     width: 250px;
+}
+.user-header-dropdown-toggle {
+    top: -15px;
+    right: 10px;
+    height: 45px;
 }
