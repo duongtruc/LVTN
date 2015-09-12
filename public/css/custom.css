@@ -5,10 +5,12 @@ html, body {
 .container-full {
     margin: 0 auto;
     width: 100%;
+    border-top: none;
 }
 
 .main-tab-list {
     margin-left: 50px;
+    border-top: none;
 }
 
 
@@ -24,12 +26,24 @@ html, body {
     margin-top: 10px;
     height: 0px;
     background-color: black;
+    border-bottom: none;
+    padding-left: 10px;
 }
 
 .nav-tabs > li {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     vertical-align: middle;
+}
+.nav-tabs li .active > a {
+    background-color: #FFFFFF !important;
+}
+.nav-tabs .active  a {
+    background-color: #FFFFFF !important;
+    color: black !important;
+}
+.btn-add > a {
+    color: black !important;
 }
 
 .nav-tabs > li > a {
@@ -53,4 +67,9 @@ html, body {
 }
 .create-menu {
     width: 250px;
+}
+.user-header-dropdown-toggle {
+    top: -15px;
+    right: 10px;
+    height: 45px;
 }

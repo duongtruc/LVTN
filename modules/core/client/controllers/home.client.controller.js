@@ -5,17 +5,14 @@ angular.module('core').controller('HomeController', ['$scope', '$modal', 'Authen
         // This provides Authentication context.
         $scope.tabIndex = 0;
         $scope.authentication = Authentication;
-        $scope.createTicket = function () {
-            $scope.tickets.push({
-                tabIndex: $scope.tabIndex++
-            });
+        $scope.createTicket = function() {
+            $scope.tickets.push({tabIndex: $scope.tabIndex++, active: 'active'});
         };
         // Create new Article
         $scope.create = function (tabIndex) {
             // Create new Article object
             //tabIndex = parseInt(tabIndex);
             var newTicket = $scope.tickets[tabIndex];
-            console.log(newTicket);
             var article = new Articles({
                 title: newTicket.title,
                 content: newTicket.newReply,
@@ -33,23 +30,7 @@ angular.module('core').controller('HomeController', ['$scope', '$modal', 'Authen
             });
         };
 
-        $scope.tickets = [
-            /*{
-
-                _id: "55e1ed1fa16934601afc79df",
-                title: "ABBBBDBD",
-                type: 1,
-                priority: 3,
-                content: "ffdsfdsfdsfsdf"
-          },
-          {
-             _id: "55e1ed1fa16934601afc79df",
-            title: "ABBBBDBD",
-            type: 2,
-            priority: 0,
-            content: "ffdsfdsfdsfsdf"
-          }*/
-            ];
+        $scope.tickets = [];
         $scope.animationsEnabled = true;
 
         $scope.createnewuser = function (size) {

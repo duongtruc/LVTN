@@ -6,7 +6,8 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-        'public/css/custom.css'
+        'public/css/custom.css',
+        'public/css/font-awesome.min.css'
       ],
       js: [
         'public/lib/angular/angular.js',
