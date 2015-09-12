@@ -1,12 +1,14 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', 'Articles',
-  function ($scope, Authentication, Articles) {
+angular.module('core').controller('HomeController', ['$scope', '$modal', 'Authentication', 'Articles', 'Users',
+  function ($scope, $modal, Authentication, Articles, Users) {
         // This provides Authentication context.
         $scope.tabIndex = 0;
         $scope.authentication = Authentication;
-        $scope.createTicket = function() {
-            $scope.tickets.push({tabIndex: $scope.tabIndex++});
+        $scope.createTicket = function () {
+            $scope.tickets.push({
+                tabIndex: $scope.tabIndex++
+            });
         };
         // Create new Article
         $scope.create = function (tabIndex) {
@@ -46,14 +48,29 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             type: 2,
             priority: 0,
             content: "ffdsfdsfdsfsdf"
-          }*/];
+          }*/
+            ];
+        $scope.animationsEnabled = true;
+
+        $scope.createnewuser = function (size) {
+
+            var modalInstance = $modal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'myUser.html',
+                controller: 'NewUserController',
+                size: size
+            });
+            $scope.toggleAnimation = function () {
+                $scope.animationsEnabled = !$scope.animationsEnabled;
+            };
+        };
   }
 ]);
 angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
   function ($scope, $stateParams, $location, Authentication, Articles) {
         $scope.authentication = Authentication;
         // Create new Article
-      /*
+        /*
         $scope.create = function () {
             // Create new Article object
             var article = new Articles({
