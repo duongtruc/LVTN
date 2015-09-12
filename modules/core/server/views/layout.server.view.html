@@ -31,7 +31,9 @@
 
     <!-- Fav Icon -->
     <link href="{{url}}{{favicon}}" rel="shortcut icon" type="image/x-icon">
-
+    <!-- external js -->
+    <scripts src="/public/lib/jquery/dist/jquery.min.js"></script>
+    <scripts src="/public/lib/external/notify.min.js"></script>
     <!-- Application CSS Files -->
     {% for cssFile in cssFiles %}
     <link rel="stylesheet" href="{{cssFile}}">{% endfor %}
