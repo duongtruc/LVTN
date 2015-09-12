@@ -46,7 +46,7 @@
             </li>
         </ul>
         <tabset class="main-tab-list" data-ng-show="authentication.user">
-            <tab data-ng-repeat="ticket in tickets" class="ticket-tab" data-ng-controller="ArticlesController" active="true">
+            <tab data-ng-repeat="ticket in tickets" class="ticket-tab" data-ng-controller="ArticlesController" active="ticket.active">
                 <tab-heading>
                     <i class="glyphicon glyphicon-asterisk"></i> {{ticket.title}}
                 </tab-heading>
