@@ -72,4 +72,3 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
-/public/lib/
